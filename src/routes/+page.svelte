@@ -3,7 +3,25 @@
 	import { db } from '$lib/db';
 	import { liveQuery } from 'dexie';
 
+	let title, author, genre, price;
+
 	$: books = liveQuery(() => (browser ? db.books.toArray() : []));
+
+	const addBook = () => {
+		return db.books.add({ title, author, genre, price });
+	};
+
+	$: handleSubmit = () => {
+		if (title && author && genre && price) {
+			addBook();
+			title = '';
+			author = '';
+			genre = '';
+			price = 0.0;
+		} else {
+			alert('All fields are required');
+		}
+	};
 </script>
 
 <section class="container text-slate-500 mx-auto px-0 ">
@@ -24,5 +42,36 @@
 				</div>
 			{/each}
 		{/if}
+	</div>
+	<div class="mx-4 m-6">
+		<h1 class="text-4xl my-4">Add a Book</h1>
+		<form on:submit|preventDefault={handleSubmit} class="flex flex-wrap gap-3 max-w-lg" action="">
+			<input
+				class="focus:outline-none p-3 rounded-sm w-full ring-2"
+				placeholder="Title..."
+				bind:value={title}
+				type="text"
+			/>
+			<input
+				class="focus:outline-none p-3 rounded-sm w-full ring-2"
+				placeholder="Author..."
+				bind:value={author}
+				type="text"
+			/>
+			<input
+				class="focus:outline-none p-3 rounded-sm w-full ring-2"
+				placeholder="Genre..."
+				bind:value={genre}
+				type="text"
+			/>
+			<input
+				class="focus:outline-none p-3 rounded-sm w-full ring-2"
+				placeholder="Price..."
+				bind:value={price}
+				step="0.01"
+				type="number"
+			/>
+			<button type="submit" class="px-4 py-2 bg-slate-700 text-white rounded-sm">Add Book</button>
+		</form>
 	</div>
 </section>
