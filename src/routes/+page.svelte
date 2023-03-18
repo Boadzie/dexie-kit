@@ -22,6 +22,11 @@
 			alert('All fields are required');
 		}
 	};
+
+	// Delete a book
+	const deleteBook = (id) => {
+		return db.books.delete(id);
+	};
 </script>
 
 <section class="container text-slate-500 mx-auto px-0 ">
@@ -33,12 +38,30 @@
 					<h1 class="text-2xl ">{book.title}</h1>
 					<p class="text-md">{book.author}</p>
 					<p class="italic">{book.genre}</p>
-					<p class="font-bold text-red-500">
-						{book.price.toLocaleString('en-US', {
-							style: 'currency',
-							currency: 'USD'
-						})}
-					</p>
+					<div class="flex items-center justify-between ">
+						<p class="font-bold text-red-500">
+							{book.price.toLocaleString('en-US', {
+								style: 'currency',
+								currency: 'USD'
+							})}
+						</p>
+						<button on:click={deleteBook(book.id)}>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="stroke-red-500 w-6 h-6  icon icon-tabler icon-tabler-x"
+								viewBox="0 0 24 24"
+								stroke-width="2"
+								stroke=""
+								fill="none"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+								<line x1="18" y1="6" x2="6" y2="18" />
+								<line x1="6" y1="6" x2="18" y2="18" />
+							</svg>
+						</button>
+					</div>
 				</div>
 			{/each}
 		{/if}
