@@ -1,6 +1,6 @@
 # Dexie-kit
 
-![dexie-kit](static/dexie-kit-val.gif)
+![dexie-kit](static/dexie-kit-new.gif)
 
 > The tutorial provides step-by-step instructions on how to set up and configure a SvelteKit project and integrate Dexie.js to store and manage data in the browser.
 
