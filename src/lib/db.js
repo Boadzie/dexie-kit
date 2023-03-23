@@ -1,8 +1,8 @@
 // db.js
 import Dexie from 'dexie';
-import { indexedDB, IDBKeyRange } from 'fake-indexeddb';
+// import { indexedDB, IDBKeyRange } from 'fake-indexeddb';
 
-export const db = new Dexie('bookDB', { indexedDB: indexedDB, IDBKeyRange: IDBKeyRange });
+export const db = new Dexie('bookDB');
 db.version(1).stores({
 	books: '++id, title, author, genre, price' // Primary key and indexed props
 });
