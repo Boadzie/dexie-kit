@@ -30,7 +30,6 @@
 </script>
 
 <section class="container text-slate-500 mx-auto px-0 ">
-	<h1 class="bg-slate-800 text-white p-2 text-4xl ">Dexie-Kit</h1>
 	<div class="mt-6 mx-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
 		{#if $books}
 			{#each $books as book}
@@ -71,7 +70,7 @@
 			{/each}
 		{/if}
 	</div>
-	<div class="mx-4 m-6">
+	<div id="addBook" class="mx-4 m-6">
 		<h1 class="text-4xl my-4">Add a Book</h1>
 		<form on:submit|preventDefault={handleSubmit} class="flex flex-wrap gap-3 max-w-lg" action="">
 			<input
